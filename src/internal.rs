@@ -173,7 +173,7 @@ pub(crate) unsafe fn try_from_bytes<T: Copy>(
 /// * If the slice isn't aligned for the new type
 /// * If the slice's length isn’t exactly the size of the new type
 #[inline]
-pub(crate) unsafe fn try_from_bytes_mut<T: Copy>(
+pub(crate) unsafe fn try_from_bytes_mut<T: Clone>(
   s: &mut [u8],
 ) -> Result<&mut T, PodCastError> {
   if s.len() != size_of::<T>() {
@@ -320,7 +320,7 @@ pub(crate) unsafe fn try_cast_ref<A: Copy, B: Copy>(
 ///
 /// As [`try_cast_ref`], but `mut`.
 #[inline]
-pub(crate) unsafe fn try_cast_mut<A: Copy, B: Copy>(
+pub(crate) unsafe fn try_cast_mut<A: Clone, B: Clone>(
   a: &mut A,
 ) -> Result<&mut B, PodCastError> {
   // Note(Lokathor): everything with `align_of` and `size_of` will optimize away
@@ -378,7 +378,7 @@ pub(crate) unsafe fn try_cast_slice<A: Copy, B: Copy>(
 ///
 /// As [`try_cast_slice`], but `&mut`.
 #[inline]
-pub(crate) unsafe fn try_cast_slice_mut<A: Copy, B: Copy>(
+pub(crate) unsafe fn try_cast_slice_mut<A: Clone, B: Clone>(
   a: &mut [A],
 ) -> Result<&mut [B], PodCastError> {
   let input_bytes = core::mem::size_of_val::<[A]>(a);
