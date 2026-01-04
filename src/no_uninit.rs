@@ -67,7 +67,7 @@ use core::num::{
 /// * There's probably more, don't mess it up (I mean it).
 ///
 /// [type layout]: <https://doc.rust-lang.org/reference/type-layout.html>
-pub unsafe trait NoUninit: Sized + Copy + 'static {}
+pub unsafe trait NoUninit: Sized + Clone + 'static {}
 
 unsafe impl<T: Pod> NoUninit for T {}
 
