@@ -49,7 +49,7 @@ use crate::{Pod, Zeroable};
 ///   be trivial and permit only read-only access.
 /// * There's probably more, don't mess it up (I mean it).
 pub unsafe trait AnyBitPattern:
-  Zeroable + Sized + Copy + 'static
+  Zeroable + Sized + Clone + 'static
 {
 }
 
